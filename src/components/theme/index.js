@@ -9,5 +9,10 @@ export default {
   },
   layout: {
     headerH: "8vh"
+  },
+  fonts: {
+    primaryFont: "'Montserrat', sans-serif",
+    strong: 500,
+    regular: 400,
   }
 };
