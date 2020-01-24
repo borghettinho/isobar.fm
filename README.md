@@ -1,6 +1,6 @@
 # Isobar.fm
 ### Stack:
-- [ReactJS](https://reactjs.org/))
+- [ReactJS](https://reactjs.org/)
 - Styled with [styled-components](https://www.styled-components.com/) and [polished](https://github.com/styled-components/polished)
 - State management with context and [hooks](https://reactjs.org/docs/hooks-reference.html) (useContext, useReducer, useState)
 - Animations with [Framer motion](https://www.framer.com/motion/)
