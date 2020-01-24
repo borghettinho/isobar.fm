@@ -11,6 +11,14 @@ const Header = styled.header`
   align-items: center;
 
   background: ${({ theme }) => transparentize(0.1, theme.colors.primary)};
+
+  h1 {
+    margin-right: 2%;
+  }
+
+  img {
+    max-width: 120px;
+  }
 `;
 
 export { Header };

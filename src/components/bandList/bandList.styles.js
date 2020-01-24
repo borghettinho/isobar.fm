@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
 
-const BandList = styled(motion.ul)`
+const BandList = styled.ul`
   padding: 0;
 `
 

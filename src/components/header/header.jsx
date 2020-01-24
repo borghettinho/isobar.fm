@@ -1,23 +1,18 @@
 import React from "react";
+import {Link} from 'react-router-dom';
+
 import { Header } from "./header.styles";
+import Search from '../search/search'
+
 
 export default () => {
   return (
     <Header>
-      <input
-        style={{ background: "#fff", border: "none" }}
-        type="search"
-        name="search"
-        id="search"
-      />
-      <h1
-        style={{
-          color: "#fff",
-          margin: "0",
-          fontFamily: "'Source Sans', sans-serif"
-        }}
-      >
-        isobar<span style={{ fontSize: "14px" }}>.fm</span>
+      <Search />
+      <h1 aria-label="isobar.fm">
+        <Link to="/">
+          <img src="/assets/logo.png"/>
+        </Link>
       </h1>
     </Header>
   );

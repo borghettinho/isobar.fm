@@ -1,41 +1,47 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState, useEffect } from "react";
+
+import {BandContext} from '../../components/bandContext/bandContext'
 
 import Layout from "../layout/layout";
-import BandPreview from "../../components/bandPreview/bandPreview";
 import BandList from "../../components/bandList/bandList"
+import NoResults from "../../components/noResults/noResults"
+
+import Band from '../band/band'
 
 const Bands = () => {
-  const [bands, setBands] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // get search and filter from context
+  const { state } = useContext(BandContext)
+  const [renderedBands, setRenderedBands] = useState([])
 
   useEffect(() => {
-    (async () => {
-      await axios
-        .get("https://iws-recruiting-bands.herokuapp.com/api/bands")
-        .then(res => {
-          setBands(res.data);
-          setLoading(false);
-        })
-        .catch(err => console.log(err));
-    })();
-  }, []);
+
+    const filteredBands = state.fetchedBands.filter((band) => {
+      const bandName = band.name.toUpperCase();
+      const search = state.search.toUpperCase();
+
+      if(bandName.includes(search)) {
+        return band
+      }
+
+      return;
+    })
+
+    setRenderedBands(filteredBands.map((band) => {
+        return (
+          <Band key={band.id} band={band}/>
+        );
+    }))
+  }, [state.search, state.fetchedBands])
+
 
   return (
     <Layout>
-      {loading ? "loading..." : null}
+      {state.loading ? "loading..." : null}
+      {
+        !state.loading && renderedBands.length === 0 ? <NoResults /> : null
+      }
       <BandList>
-        {bands.map(band => {
-          return (
-            <BandPreview
-              key={band.id}
-              image_url={band.image}
-              name={band.name}
-              plays={band.numPlays}>
-              {band.name}
-            </BandPreview>
-          );
-        })}
+        {renderedBands}
       </BandList>
     </Layout>
   );

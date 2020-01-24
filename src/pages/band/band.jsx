@@ -1,13 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 
-import Layout from "../layout/layout";
+import BandPreview from '../../components/bandPreview/bandPreview'
+import BandDetails from '../../components/bandDetails/bandDetails'
 
-const Band = () => {
+import {Band} from './band.styles';
+
+export default ({band}) => {
+
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Layout>
-      <h1>Nats ingonya ba bagithi Baba Sithi uhm ingonya aba</h1>;
-    </Layout>
+    <Band onClick={() => {setExpanded(!expanded)}}>
+      <BandPreview
+      image_url={band.image}
+      name={band.name}
+      plays={band.numPlays} />
+      <BandDetails expanded={expanded} id={band.id}/>
+    </Band>
+    
   );
 };
-
-export default Band;
